@@ -1,0 +1,8 @@
+# This file contains variables to be passed in the templates.
+
+replicaCount: 1
+
+image:
+  repository: example-image
+  pullPolicy: IfNotPresent
+  tag: v1-123abc
