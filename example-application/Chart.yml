@@ -1,0 +1,6 @@
+apiVersion: "v2"
+type: application
+version: 0.1.0
+name: example-application
+description: Helm Chart to deploy a sample backend
+appVersion: "1.0.0"
