@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{  .Values.app.name }}
+  labels:
+    app:  {{  .Values.app.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{  .Values.replicaCount  }}
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name  }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.name  }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port  }}
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{  .Values.service.port  }}
+              scheme: HTTP
+            initialDelaySeconds:  {{  .Values.livenessProbe.initialDelaySeconds }}
+            periodSeconds:  {{  .Values.livenessProbe.periodSeconds }}
+          readinessProbe:
+            httpGet:
+              scheme: HTTP
+              path: /health
+              port: {{  .Values.service.port  }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          resources:
+            requests:
+              memory: {{  .Values.resources.requests.memory }}
+              cpu:  {{  .Values.resources.requests.cpu  }}
+            limits:
+              memory: {{  .Values.resources.limits.memory }}
+              cpu:  {{  .Values.resources.limits.cpu  }}
