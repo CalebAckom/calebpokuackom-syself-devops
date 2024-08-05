@@ -56,15 +56,6 @@ The worker nodes provide a running environment for client applications.
 - **Kubelet and Kube-proxy**: These components will be installed on each worker node.
 - **Node Local Storage**: Each worker node will have local SSD storage for container images and pods.
 
-# TODO
-1. Storage
-2. Networking
-3. Cluster Configuration
-4. Security
-5. High Availability
-6. Monitoring & Logging
-7. CI/CD
-
 ### Storage
 - Persistent Volume (PV): Abstract representation of a piece of storage in the cluster.
 - Persistent Volume Claim (PVC): Request for storage by a pod.
