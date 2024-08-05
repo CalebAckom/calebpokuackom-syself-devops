@@ -42,3 +42,8 @@ spec:
             limits:
               memory: {{  .Values.resources.limits.memory }}
               cpu:  {{  .Values.resources.limits.cpu  }}
+  {{- if .Values.service.secrets.enabled  }}
+          envFrom:
+            - secretRef:
+                name: {{  .Values.app.name  }}-secret
+  {{-  end}}
